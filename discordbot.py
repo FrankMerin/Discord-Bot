@@ -4,8 +4,11 @@ import requests
 import string
 import os
 
-readApikey = open("apikey.txt", "r")
-discord_key = readApikey.read()
+
+""" readApikey = open("apikey.txt", "r")
+discord_key = readApikey.read() """
+
+
    
 
 
@@ -30,4 +33,4 @@ async def on_ready():
 
 
 
-client.run(discord_key)
+client.run(os.environ.get(CCbot_API))
