@@ -8,7 +8,7 @@ import os
 """ readApikey = open("apikey.txt", "r")
 discord_key = readApikey.read() """
 
-
+discord_key = (os.environ.get('CCbot_API'))
    
 
 
@@ -33,4 +33,4 @@ async def on_ready():
 
 
 
-client.run(os.environ.get(CCbot_API))
+client.run(discord_key)
