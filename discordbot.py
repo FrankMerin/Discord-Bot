@@ -4,7 +4,7 @@ import requests
 import string
 import os
 
-readApikey = open("apikey.gitignore", "r")
+readApikey = open("apikey.txt", "r")
 discord_key = readApikey.read()
    
 
