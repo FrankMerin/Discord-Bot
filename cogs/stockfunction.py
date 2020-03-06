@@ -21,8 +21,9 @@ class stockfunction(commands.Cog):
             data = requests.get(url)
             stockSymbol = data.json()['symbol']
             stockProfile = data.json()['profile']['price']
+            stockPChange = data.json()['profile']['changes']
             stockChange = data.json()['profile']['changesPercentage']
-            await ctx.send('```Symbol: %s \nPrice: %s \nPercent Changed: %s' % (stockSymbol, stockProfile, stockChange + "```"))
+            await ctx.send('```Symbol: %s \nPrice: %s \nPrice Changed %s \nPercent Changed: %s' % (stockSymbol, stockProfile, '$' + stockPChange, stockChange + "```"))
         except:
             await ctx.send('Ticker Symbol Invalid')
 
