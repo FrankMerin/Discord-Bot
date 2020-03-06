@@ -18,15 +18,28 @@ class stockfunction(commands.Cog):
     @commands.command()
     async def tk(self, ctx, tk):
         try:
-            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk))
-            data = requests.get(url)
-            stockSymbol = data.json()['symbol']
-            stockProfile = data.json()['profile']['price']
-            stockPChange = data.json()['profile']['changes']
-            stockChange = data.json()['profile']['changesPercentage']
-            await ctx.send('```Symbol: %s \nPrice: %s \nPrice Changed: %s \nPercent Changed: %s' % (stockSymbol, stockProfile, '$' + str(stockPChange), stockChange + "```"))
-        except:
-            await ctx.send('Ticker Symbol Invalid')
+        embedStock = discord.Embed(
+            
+        )
+
+        url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk))
+        data = requests.get(url)
+        stockPic = data.json()['profile']['image']
+        stockSymbol = data.json()['symbol']
+        stockPrice = data.json()['profile']['price']
+        stockPChange = data.json()['profile']['changes']
+        stockChange = data.json()['profile']['changesPercentage']
+
+        embedStock.set_thumbnail(url = stockPic)
+        embedStock.add_field(name='Symbol:', value=stockSymbol, inline=False)
+        embedStock.add_field(name='Price', value=stockPrice, inline=False)
+        embedStock.add_field(name='Price Change Today', value='$' + str(stockPChange), inline=False)
+        embedStock.add_field(name='Percent Change Today', value=stockChange, inline=False)
+
+        await ctx.send(embed=embedStock)
+
+    except:
+        await ctx.send('Ticker Symbol Invalid') 
 
 def setup(client):
     client.add_cog(stockfunction(client))
