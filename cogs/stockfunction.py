@@ -18,9 +18,7 @@ class stockfunction(commands.Cog):
     @commands.command()
     async def tk(self, ctx, tk):
         try:
-            embedStock = discord.Embed(
-            
-        )
+           
 
             url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk))
             data = requests.get(url)
@@ -30,9 +28,22 @@ class stockfunction(commands.Cog):
             stockPChange = data.json()['profile']['changes']
             stockChange = data.json()['profile']['changesPercentage']
 
+
+            if stockPChange > 0: 
+                sideColor = discord.Color.green()
+            elif stockPChange < 0:
+                sideColor = discord.Color.red()
+            else:
+                sideColor = discord.Color.from_rgb(211,211,211)
+            
+            embedStock = discord.Embed(
+                color = sideColor
+            )
+
+
             embedStock.set_thumbnail(url = stockPic)
             embedStock.add_field(name='Symbol:', value=stockSymbol, inline=False)
-            embedStock.add_field(name='Price', value=stockPrice, inline=False)
+            embedStock.add_field(name='Price', value='$' + str(stockPrice), inline=False)
             embedStock.add_field(name='Price Change Today', value='$' + str(stockPChange), inline=False)
             embedStock.add_field(name='Percent Change Today', value=stockChange, inline=False)
 
