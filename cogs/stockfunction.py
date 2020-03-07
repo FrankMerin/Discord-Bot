@@ -23,7 +23,7 @@ class stockfunction(commands.Cog):
             url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk))
             data = requests.get(url)
             stockPic = data.json()['profile']['image']
-            stockSymbol = data.json()['symbol']
+            stockCompany = data.json()['profile']['companyName']
             stockPrice = data.json()['profile']['price']
             stockPChange = data.json()['profile']['changes']
             stockChange = data.json()['profile']['changesPercentage']
@@ -42,10 +42,10 @@ class stockfunction(commands.Cog):
 
 
             embedStock.set_thumbnail(url = stockPic)
-            embedStock.add_field(name='Symbol:', value=stockSymbol, inline=False)
-            embedStock.add_field(name='Price', value='$' + str(stockPrice), inline=False)
-            embedStock.add_field(name='Price Change Today', value='$' + str(stockPChange), inline=False)
-            embedStock.add_field(name='Percent Change Today', value=stockChange, inline=False)
+            embedStock.add_field(name='Company:', value=stockCompany, inline=False)
+            embedStock.add_field(name='Price:', value='$' + str(stockPrice), inline=False)
+            embedStock.add_field(name='Price Change Today:', value='$' + str(stockPChange), inline=False)
+            embedStock.add_field(name='Percent Change Today:', value=stockChange, inline=False)
 
             await ctx.send(embed=embedStock)
 
