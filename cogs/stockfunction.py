@@ -42,10 +42,10 @@ class stockfunction(commands.Cog):
 
 
             embedStock.set_thumbnail(url = stockPic)
-            embedStock.add_field(name='Company:', value=stockCompany, inline=False)
-            embedStock.add_field(name='Price:', value='$' + str(stockPrice), inline=False)
-            embedStock.add_field(name='Price Change Today:', value='$' + str(stockPChange), inline=False)
-            embedStock.add_field(name='Percent Change Today:', value=stockChange, inline=False)
+            embedStock.add_field(name='**Company:**', value=stockCompany, inline=False)
+            embedStock.add_field(name='**Price:**', value='$' + str(stockPrice), inline=False)
+            embedStock.add_field(name='**Price Change Today:**', value='$' + str(stockPChange), inline=False)
+            embedStock.add_field(name='**Percent Change Today:**', value=stockChange, inline=False)
 
             await ctx.send(embed=embedStock)
 

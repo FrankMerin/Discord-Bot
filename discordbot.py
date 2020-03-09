@@ -5,8 +5,6 @@ import string
 import os
 
 
-""" readApikey = open("apikey.txt", "r")
-discord_key = readApikey.read() """
 
 discord_key = (os.environ.get('CCbot_API'))
    
