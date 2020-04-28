@@ -21,7 +21,7 @@ class helpfunction(commands.Cog):
         embed.set_author(name='Bot Commands')
         embed.add_field(name='$ping', value='Displays latency to the server', inline=False)
         embed.add_field(name='$tk', value='Enter $tk <ticker symbol> for stock information', inline=False)
-        embed.add_field(name='$clear', value='Deletes messages. Default value = 5. Clear <value>', inline=False)
+        embed.add_field(name='$clear', value='Enter $clear <value> to deletes messages. Default value = 5', inline=False)
     
 
         await ctx.author.send(embed=embed)
