@@ -17,9 +17,9 @@ client.remove_command('help')
 async def load(ctx, extention):
     client.load_extension(f'cogs.{extention}')
 
-@client.command()
-async def unload(ctx, extention):
-    client.unload_extension(f'cogs.{extention}')
+# @client.command()
+# async def unload(ctx, extention):
+#     client.unload_extension(f'cogs.{extention}')
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
