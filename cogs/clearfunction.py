@@ -15,8 +15,13 @@ class clearfunction(commands.Cog):
     # clear function
     @commands.command()
     @commands.has_permissions(manage_messages = True)
-    async def clear(self, ctx, amount=5):
-        await ctx.channel.purge(limit=amount)
+    async def clear(self, ctx, amount: Optional[int] = 5, author=''):
+        if author =='':
+            await ctx.channel.purge(limit=amount)
+        else:
+            await ctx.channel.purge(limit=amount, check=lambda m: m.author.mention == author)
+
+        
     @clear.error
     async def clear_error(self, ctx, error):
         await ctx.channel.send ('You do not have permissions to order me around! Baka!')
