@@ -1,25 +1,21 @@
-import discord
 from discord.ext import commands
 
 
-class uwufunction(commands.Cog):
+class UwuFunction(commands.Cog):
 
-    def __init__(self,client):
+    def __init__(self, client):
         self.client = client
-    
+
     @commands.Cog.listener()
     async def on_ready(self):
         print('uwu enabled')
 
-    
     # UwU function
-    
-
     @commands.Cog.listener()
     async def on_message(self, ctx):
-        if ctx.guild.id != 482608530105434112:   # temporary fix while i work on database solution to prevent UwU from running a specific server
+        if ctx.guild.id != 482608530105434112:  # temporary fix while I work on database solution to prevent UwU from running a specific server
             uwu = 'uwu'
-            if(ctx.author.bot):
+            if ctx.author.bot:
                 return
             if ctx.content.lower() == uwu:
                 channel = ctx.channel
@@ -29,7 +25,5 @@ class uwufunction(commands.Cog):
             return
 
 
-        
-
 def setup(client):
-    client.add_cog(uwufunction(client))
+    client.add_cog(UwuFunction(client))
