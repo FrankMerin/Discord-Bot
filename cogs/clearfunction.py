@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import has_permissions, MissingPermissions
+from typing import Optional
 
 class clearfunction(commands.Cog):
 
