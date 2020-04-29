@@ -25,7 +25,8 @@ class clearfunction(commands.Cog):
         if author =='':
             await ctx.channel.purge(limit=amount)
         else:
-            await ctx.channel.purge(limit=amount, check=lambda m: m.author.mention == author)
+            await ctx.channel.purge(limit=amount, check=lambda m: str(m.author.id) == author.strip('<@!>'))
+
 
     @clear.error
     async def clear_error(self, ctx, error):
