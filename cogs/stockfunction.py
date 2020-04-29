@@ -1,10 +1,9 @@
 import discord
 from discord.ext import commands
 import requests
-import string
 
 
-class stockfunction(commands.Cog):
+class StockFunction(commands.Cog):
 
     def __init__(self,client):
         self.client = client
@@ -22,35 +21,35 @@ class stockfunction(commands.Cog):
 
             url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk))
             data = requests.get(url)
-            stockPic = data.json()['profile']['image']
-            stockCompany = data.json()['profile']['companyName']
-            stockPrice = data.json()['profile']['price']
-            stockPChange = data.json()['profile']['changes']
-            stockChange = data.json()['profile']['changesPercentage']
+            stockpic = data.json()['profile']['image']
+            stockcompany = data.json()['profile']['companyName']
+            stockprice = data.json()['profile']['price']
+            stockpchange = data.json()['profile']['changes']
+            stockchange = data.json()['profile']['changesPercentage']
 
 
-            if stockPChange > 0: 
-                sideColor = discord.Color.green()
-            elif stockPChange < 0:
-                sideColor = discord.Color.red()
+            if stockpchange > 0:
+                sidecolor = discord.Color.green()
+            elif stockpchange < 0:
+                sidecolor = discord.Color.red()
             else:
-                sideColor = discord.Color.from_rgb(211,211,211)
+                sidecolor = discord.Color.from_rgb(211,211,211)
             
-            embedStock = discord.Embed(
-                color = sideColor
+            embedstock = discord.Embed(
+                color = sidecolor
             )
 
 
-            embedStock.set_thumbnail(url = stockPic)
-            embedStock.add_field(name='**Company:**', value=stockCompany, inline=False)
-            embedStock.add_field(name='**Price:**', value='$' + str(stockPrice), inline=False)
-            embedStock.add_field(name='**Price Change Today:**', value='$' + str(stockPChange), inline=False)
-            embedStock.add_field(name='**Percent Change Today:**', value=stockChange, inline=False)
+            embedstock.set_thumbnail(url = stockpic)
+            embedstock.add_field(name='**Company:**', value=stockcompany, inline=False)
+            embedstock.add_field(name='**Price:**', value='$' + str(stockprice), inline=False)
+            embedstock.add_field(name='**Price Change Today:**', value='$' + str(stockpchange), inline=False)
+            embedstock.add_field(name='**Percent Change Today:**', value=stockchange, inline=False)
 
-            await ctx.send(embed=embedStock)
+            await ctx.send(embed=embedstock)
 
-        except:
+        except KeyError:
             await ctx.send('Ticker Symbol Invalid') 
 
 def setup(client):
-    client.add_cog(stockfunction(client))
+    client.add_cog(StockFunction(client))
