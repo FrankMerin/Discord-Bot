@@ -1,8 +1,8 @@
 from discord.ext import commands
 import os
 
+
 discord_key = (os.environ.get('CCbot_API'))
-stock_key = (os.environ.get('Stock_API'))
 client = commands.Bot(command_prefix='$')
 client.remove_command('help')
 

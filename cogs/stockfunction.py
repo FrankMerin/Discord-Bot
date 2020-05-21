@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands
 import requests
+import os
 
+stock_key = (os.environ.get('Stock_API'))
 
 class StockFunction(commands.Cog):
 
@@ -17,9 +19,8 @@ class StockFunction(commands.Cog):
     @commands.command()
     async def tk(self, ctx, tk):
         try:
-           
-            stock_key = (os.environ.get('Stock_API'))
-            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk) + '?apikey=' + (stock_key))
+
+            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk) + '?apikey=' + str(stock_key))
             data = requests.get(url)
             stockpic = data.json()['profile']['image']
             stockcompany = data.json()['profile']['companyName']
