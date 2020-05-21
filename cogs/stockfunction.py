@@ -18,8 +18,8 @@ class StockFunction(commands.Cog):
     async def tk(self, ctx, tk):
         try:
            
-
-            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk))
+            stock_key = (os.environ.get('Stock_API'))
+            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk) + '?' + (stock_key))
             data = requests.get(url)
             stockpic = data.json()['profile']['image']
             stockcompany = data.json()['profile']['companyName']
