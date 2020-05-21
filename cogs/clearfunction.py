@@ -32,17 +32,24 @@ class ClearFunction(commands.Cog):
                     pass
 
         if args.__len__() == 0:
-            await ctx.channel.purge(limit=amount)
+            deleted = await ctx.channel.purge(limit=amount)
+            await ctx.send('Deleted {} message(s)'.format(len(deleted)),delete_after=4)
+
         elif args.__len__() == 2:
             if not userid:
                 pass
-            await ctx.channel.purge(limit=amount, check=lambda m: str(m.author.id) == userid)
+            deleted = await ctx.channel.purge(limit=amount, check=lambda m: str(m.author.id) == userid)
+            await ctx.send('Deleted {} message(s)'.format(len(deleted)),delete_after=4)
+
         elif args.__len__() == 1:
             # let's find out which arg we have
             if userid:
-                await ctx.channel.purge(limit=amount, check=lambda m: str(m.author.id) == userid)
+                deleted = await ctx.channel.purge(limit=amount, check=lambda m: str(m.author.id) == userid)
+                await ctx.send('Deleted {} message(s)'.format(len(deleted)),delete_after=4)
+                
             else:
-                await ctx.channel.purge(limit=amount)
+                deleted = await ctx.channel.purge(limit=amount)
+                await ctx.send('Deleted {} message(s)'.format(len(deleted)),delete_after=4)
 
     @clear.error
     async def clear_error(self, ctx, error):
