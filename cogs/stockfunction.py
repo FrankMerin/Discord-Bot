@@ -19,7 +19,7 @@ class StockFunction(commands.Cog):
         try:
            
             stock_key = (os.environ.get('Stock_API'))
-            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk) + '?' + (stock_key))
+            url = ('https://financialmodelingprep.com/api/v3/company/profile/' + (tk) + '?apikey=' + (stock_key))
             data = requests.get(url)
             stockpic = data.json()['profile']['image']
             stockcompany = data.json()['profile']['companyName']
