@@ -24,6 +24,7 @@ class HelpFunction(commands.Cog):
         embed.add_field(name='$clear',
                         value='Enter $clear [number_of_messages] [@userID] to delete messages. Default value = 5. Must have manage messages permission to use this command',
                         inline=False)
+        embed.add_field(name='$disableuwu / enableuwu', value='Use this to enable/disable the UwU autoreply', inline=False)
 
         await ctx.author.send(embed=embed)
 
