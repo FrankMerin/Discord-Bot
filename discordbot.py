@@ -25,7 +25,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS statusUwU (
                                 serverID TEXT NOT NULL,
                                 status BOOL NOT NULL
                                 );""")
-conn.commit()
+conn.close()
 
 
 
