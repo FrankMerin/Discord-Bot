@@ -71,10 +71,12 @@ async def findexistance(server):
     result = await conn.execute('SELECT serverID FROM public.statusuwu WHERE serverID= $1', server)
     # result is equal to the number of rows output from the database, in the case of the server not existing already, we return SELECT 0
     if result != 'SELECT 0': 
+        await conn.close()
         return True
     else:
+        await conn.close()
         return False
-    await conn.close()
+    
 
 
 
