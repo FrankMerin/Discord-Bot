@@ -46,6 +46,7 @@ class UwuFunction(commands.Cog):
         conn = await asyncpg.connect(database = DB_NAME, user = DB_USER, 
                                 password=DB_PASS, host=DB_HOST, port=DB_PORT)
         result = await conn.execute('SELECT serverID FROM public.statusuwu WHERE status= True AND serverID= $1', str(ctx.guild.id))
+        await conn.close()
         if result != 'SELECT 0':
             uwu = 'uwu'
             if ctx.author.bot:
@@ -54,9 +55,7 @@ class UwuFunction(commands.Cog):
                 channel = ctx.channel
                 await channel.send('UwU')
                 await self.client.process_commands(ctx)
-                await conn.close()
         else:
-            await conn.close()
             return
 
 
