@@ -9,4 +9,7 @@ It will contain some functionality and metahumor.
 
 Add the bot to your server: https://discordapp.com/api/oauth2/authorize?client_id=684118827864293405&permissions=8&scope=bot
 
-Bot is currently hosted on Heroku's linux server.
+Bot is currently hosted on Heroku.
+
+Database hosted on ElephantSQL using postgres.
+
