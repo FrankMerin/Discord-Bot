@@ -1,3 +1,4 @@
+import discord
 from discord.ext import commands
 import os
 import psycopg2
@@ -46,6 +47,7 @@ if __name__ == '__main__':
 
 @client.event
 async def on_ready():
+    await client.change_presence(activity=discord.Game(name="$help for Commands"))
     print('Bot is alive')
 
 
