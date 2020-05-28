@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name="$help for Commands"))
+    await client.change_presence(activity=discord.Game(name="$help"))
     print('Bot is alive')
 
 
