@@ -30,6 +30,9 @@ class UwuFunction(commands.Cog):
                         password=DB_PASS, host=DB_HOST, port=DB_PORT)
         await conn.execute('UPDATE public.statusuwu SET status = True WHERE serverID= $1', str(ctx.guild.id))
         await conn.close()
+    @enableuwu.error
+    async def enableuwu_error(self, ctx, error):
+        await ctx.channel.send('You do not have permissions to order me around! Baka! (This Command Requires Administator Permissions)')
 
     # will disable UwU
     @commands.command()
@@ -39,6 +42,9 @@ class UwuFunction(commands.Cog):
                         password=DB_PASS, host=DB_HOST, port=DB_PORT)
         await conn.execute('UPDATE public.statusuwu SET status = False WHERE serverID= $1', str(ctx.guild.id))
         await conn.close()
+    @disableuwu.error
+    async def clear_error(self, ctx, error):
+        await ctx.channel.send('You do not have permissions to order me around! Baka! (This Command Requires Administator Permissions')
 
     # UwU function
     @commands.Cog.listener()
