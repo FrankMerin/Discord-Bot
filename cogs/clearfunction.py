@@ -23,7 +23,7 @@ class ClearFunction(commands.Cog):
         userid = None
         amount = 5
         for arg in args:
-            if "<@!" in arg:
+            if "<@!" in arg or float(arg) > 10000000:
                 userid = arg.strip('<@!>')
             else:
                 try:
