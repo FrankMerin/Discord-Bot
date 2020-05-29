@@ -53,7 +53,7 @@ class ClearFunction(commands.Cog):
 
     @clear.error
     async def clear_error(self, ctx, error):
-        await ctx.channel.send('You do not have permissions to order me around! Baka! (This Command Requires Manage Messages Permissions)')
+        await ctx.channel.send('You do not have permissions to order me around! Baka! (This Command Requires Manage Messages Permissions)',delete_after=6)
 
 
 def setup(client):
