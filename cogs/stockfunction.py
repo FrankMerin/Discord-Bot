@@ -56,7 +56,8 @@ class StockFunction(commands.Cog):
     @commands.command() 
     async def tk(self, ctx, cr):
         try:
-            url = (f"https://financialmodelingprep.com/api/v3/quote/{cr}USD?apikey={str(stock_key)}")data = requests.get(url)
+            url = (f"https://financialmodelingprep.com/api/v3/quote/{cr}USD?apikey={str(stock_key)}")
+            data = requests.get(url)
             cryptoName = data.json()['name']
             cryptoPrice = data.json()['price']
             cryptoPriceChange = data.json()['change']
