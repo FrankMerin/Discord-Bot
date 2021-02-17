@@ -21,12 +21,12 @@ class StockFunction(commands.Cog):
         try:
 
             url = (f"https://financialmodelingprep.com/api/v3/company/profile/{tk}?apikey={str(stock_key)}")
-            data = requests.get(url)
-            stockpic = data.json()['profile']['image']
-            stockcompany = data.json()['profile']['companyName']
-            stockprice = data.json()['profile']['price']
-            stockpchange = data.json()['profile']['changes']
-            stockchange = data.json()['profile']['changesPercentage']
+            data = requests.get(url).json()['profile']
+            stockpic = data['image']
+            stockcompany = data['companyName']
+            stockprice = data['price']
+            stockpchange = data['changes']
+            stockchange = data['changesPercentage']
 
 
             if stockpchange > 0:
@@ -57,11 +57,11 @@ class StockFunction(commands.Cog):
     async def cr(self, ctx, cr):
         try:
             url = (f"https://financialmodelingprep.com/api/v3/quote/{cr}USD?apikey={str(stock_key)}")
-            data = requests.get(url)
-            cryptoName = data.json()['name']
-            cryptoPrice = data.json()['price']
-            cryptoPriceChange = data.json()['change']
-            cryptoChangePercent = data.json()['changesPercentage']
+            data = requests.get(url).json()[0]
+            cryptoName = data['name']
+            cryptoPrice = data['price']
+            cryptoPriceChange = data['change']
+            cryptoChangePercent = data['changesPercentage']
 
             if cryptoPriceChange > 0:
                 sidecolor = discord.Color.green()
