@@ -49,12 +49,12 @@ class StockFunction(commands.Cog):
 
             await ctx.send(embed=embedstock)
 
+
         except KeyError:
             await ctx.send('Ticker Symbol Invalid')
 
-    # crypto in USD
-    @commands.command() 
-    async def tk(self, ctx, cr):
+    @commands.command()
+    async def cr(self, ctx, cr):
         try:
             url = (f"https://financialmodelingprep.com/api/v3/quote/{cr}USD?apikey={str(stock_key)}")
             data = requests.get(url)
@@ -85,7 +85,7 @@ class StockFunction(commands.Cog):
             await ctx.send('Coin Symbol Invalid')
 
 
-
+    
 
 def setup(client):
     client.add_cog(StockFunction(client))

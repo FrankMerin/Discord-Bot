@@ -30,5 +30,8 @@ class HelpFunction(commands.Cog):
         await ctx.author.send(embed=embed)
 
 
+    
+
+
 def setup(client):
     client.add_cog(HelpFunction(client))
