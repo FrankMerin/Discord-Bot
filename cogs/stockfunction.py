@@ -85,7 +85,7 @@ class StockFunction(commands.Cog):
 
             await ctx.send(embed=embedstock)
 
-        except KeyError:
+        except IndexError:
             await ctx.send('Coin Symbol Invalid')
 
 
