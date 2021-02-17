@@ -44,7 +44,7 @@ class UwuFunction(commands.Cog):
         await conn.close()
     @disableuwu.error
     async def clear_error(self, ctx, error):
-        await ctx.channel.send('You do not have permissions to order me around! Baka! (This Command Requires Administator Permissions',delete_after=6)
+        await ctx.channel.send('You do not have permissions to order me around! Baka! (This Command Requires Administator Permissions)',delete_after=6)
 
     # UwU function
     @commands.Cog.listener()

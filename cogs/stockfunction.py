@@ -15,7 +15,7 @@ class StockFunction(commands.Cog):
         print('stocks enabled')
 
     
-    # stock function
+    # stocks in USD
     @commands.command()
     async def tk(self, ctx, tk):
         try:
@@ -50,7 +50,41 @@ class StockFunction(commands.Cog):
             await ctx.send(embed=embedstock)
 
         except KeyError:
-            await ctx.send('Ticker Symbol Invalid') 
+            await ctx.send('Ticker Symbol Invalid')
+
+    # crypto in USD
+    @commands.command() 
+    async def tk(self, ctx, cr):
+        try:
+            url = (f"https://financialmodelingprep.com/api/v3/quote/{cr}USD?apikey={str(stock_key)}")data = requests.get(url)
+            cryptoName = data.json()['name']
+            cryptoPrice = data.json()['price']
+            cryptoPriceChange = data.json()['change']
+            cryptoChangePercent = data.json()['changesPercentage']
+
+            if cryptoPriceChange > 0:
+                sidecolor = discord.Color.green()
+            elif cryptoPriceChange < 0:
+                sidecolor = discord.Color.red()
+            else:
+                sidecolor = discord.Color.from_rgb(211,211,211)
+            
+            embedstock = discord.Embed(
+                color = sidecolor
+            )
+
+            embedstock.add_field(name='**Coin:**', value=cryptoName, inline=False)
+            embedstock.add_field(name='**Price:**', value='$' + str(cryptoPrice), inline=False)
+            embedstock.add_field(name='**Price Change Today:**', value='$' + str(cryptoPriceChange), inline=False)
+            embedstock.add_field(name='**Percent Change Today:**', value=cryptoChangePercent, inline=False)
+
+            await ctx.send(embed=embedstock)
+
+        except KeyError:
+            await ctx.send('Coin Symbol Invalid')
+
+
+
 
 def setup(client):
     client.add_cog(StockFunction(client))
