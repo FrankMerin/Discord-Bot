@@ -61,27 +61,18 @@ class StockFunction(commands.Cog):
             data = requests.get(url).json()[0]
             cryptoName = data['name']
             cryptoPrice = data['price']
-            cryptoPriceChange = data['change']
-            cryptoChangePercentOriginal = data['changesPercentage']
+            cryptoMarketCap = data['marketCap']
 
-            if cryptoChangePercentOriginal < 0:
-                cryptoChangePercent = (f"({abs(cryptoChangePercentOriginal)})")
 
-            if cryptoPriceChange > 0:
-                sidecolor = discord.Color.green()
-            elif cryptoPriceChange < 0:
-                sidecolor = discord.Color.red()
-            else:
-                sidecolor = discord.Color.from_rgb(211,211,211)
             
             embedstock = discord.Embed(
-                color = sidecolor
+                color = discord.Color.orange()
             )
 
             embedstock.add_field(name='**Coin:**', value=cryptoName, inline=False)
-            embedstock.add_field(name='**Price:**', value='$' + str(cryptoPrice), inline=False)
-            embedstock.add_field(name='**Price Change Today:**', value='$' + str(cryptoPriceChange), inline=False)
-            embedstock.add_field(name='**Percent Change Today:**', value=cryptoChangePercent, inline=False)
+            embedstock.add_field(name='**Price:**', value='$' + "{:,}".format(cryptoPrice), inline=False)
+            embedstock.add_field(name='**Market Cap**', value='$' + "{:,}".format(cryptoMarketCap), inline=False)
+            
 
             await ctx.send(embed=embedstock)
 
