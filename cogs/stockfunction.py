@@ -55,13 +55,17 @@ class StockFunction(commands.Cog):
 
     @commands.command()
     async def cr(self, ctx, cr):
+        crToCapital = cr.upper()
         try:
-            url = (f"https://financialmodelingprep.com/api/v3/quote/{cr}USD?apikey={str(stock_key)}")
+            url = (f"https://financialmodelingprep.com/api/v3/quote/{crToCapital}USD?apikey={str(stock_key)}")
             data = requests.get(url).json()[0]
             cryptoName = data['name']
             cryptoPrice = data['price']
             cryptoPriceChange = data['change']
-            cryptoChangePercent = data['changesPercentage']
+            cryptoChangePercentOriginal = data['changesPercentage']
+
+            if cryptoChangePercentOriginal < 0:
+                cryptoChangePercent = (f"({abs(cryptoChangePercentOriginal)})")
 
             if cryptoPriceChange > 0:
                 sidecolor = discord.Color.green()
