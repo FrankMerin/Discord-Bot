@@ -51,11 +51,11 @@ class CGBSFunction(commands.Cog):
             await ctx.send(raidPing.mention)
 
             await ctx.send(embed=embedRaid)
-        else:
-            await ctx.send("Gomen'nasai, I was unable to find AniGame info in the last 30 messages")
-            
 
 
+    @raid.error
+    async def raid_error(self, ctx, error):
+        await ctx.send("Gomen'nasai, I was unable to find AniGame info in the last 30 messages or something broke ¯\_(ツ)_/¯")
 
 
 
