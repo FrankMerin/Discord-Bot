@@ -21,7 +21,7 @@ class CGBSFunction(commands.Cog):
             raidCP = None
             raidBC = None
             activeChannel = ctx.channel
-            pastMessages = activeChannel.history(limit=20)
+            pastMessages = activeChannel.history(limit=30)
             async for message in pastMessages:
                 if message.embeds != []:
                     if (message.author.id == 571027211407196161) and ('Raid Challenge Party' in message.embeds[0].title) and (raidCP == None):                    
@@ -51,9 +51,11 @@ class CGBSFunction(commands.Cog):
             await ctx.send(raidPing.mention)
 
             await ctx.send(embed=embedRaid)
-            
 
 
+    @raid.error
+    async def raid_error(self, ctx, error):
+        await ctx.send("Gomen'nasai, I was unable to find AniGame info in the last 30 messages or something broke ¯\_(ツ)_/¯")
 
 
 

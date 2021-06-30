@@ -3,3 +3,5 @@ requests==2.23.0
 typing==3.7.4.1
 asyncpg==0.20.1
 psycopg2==2.8.5
+Pillow==8.2.0
+requests_html==0.10.0

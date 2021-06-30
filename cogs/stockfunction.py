@@ -53,13 +53,18 @@ class StockFunction(commands.Cog):
             ### WARNING: BAD CODE HERE
             """ self.driver = webdriver.Chrome(self.chrome_driver, options=self.chrome_options)
             self.driver.get("https://www.tradingview.com/") 
+
+
             dropdownMenu = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/form/div/button')
             dropdownMenu.click()
             dropdownSelect = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/form/div/div/span[2]')
             dropdownSelect.click()
+
+
             searchinput = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/form/label/tv-autocomplete[2]/input')
             searchinput.send_keys(tk)
             searchinput.send_keys(Keys.RETURN)
+
             time.sleep(.3)
             companyName = self.driver.find_element_by_xpath('//*[@id="anchor-page-1"]/div/div[2]/div[1]/h1/div/div').get_attribute('innerHTML')
             price = self.driver.find_element_by_xpath('//*[@id="anchor-page-1"]/div/div[3]/div[1]/div/div/div/div[1]/div[1]').text
